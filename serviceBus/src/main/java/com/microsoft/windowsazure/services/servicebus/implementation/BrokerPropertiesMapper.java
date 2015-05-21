@@ -47,6 +47,9 @@ public class BrokerPropertiesMapper {
 
     public String toString(BrokerProperties value) {
         ObjectMapper mapper = new ObjectMapper();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+                "EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US);
+        mapper.setDateFormat(simpleDateFormat);
         Writer writer = new StringWriter();
         try {
             mapper.writeValue(writer, value);
