@@ -44,7 +44,7 @@ public class BrokerPropertiesMapperTest {
             + "\"ScheduledEnqueueTimeUtc\": \" Sun, 06 Nov 1994 08:49:37 GMT\","
             + "\"ReplyToSessionId\": \"reptosesid\","
             + "\"MessageLocation\": \"mesloc\","
-            + "\"LockLocation\": \"locloc\""
+            + "\"LockLocation\": \"locloc\","
             + "\"EnqueuedTimeUtc\": \" Wed, 29 Apr 2015 16:48:16 GMT\"" + "}";
 
     private static Date schedTimeUtc, lockedUntilUtc, enqueuedTimeUtc;
