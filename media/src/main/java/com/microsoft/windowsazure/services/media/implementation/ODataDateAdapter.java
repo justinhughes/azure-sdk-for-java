@@ -35,8 +35,7 @@ public class ODataDateAdapter extends XmlAdapter<String, Date> {
     static {
         HAS_TIMEZONE_REGEX = Pattern.compile("^.*(\\+|-)\\d\\d:\\d\\d$");
 
-        UTC = TimeZone.getDefault();
-        UTC.setRawOffset(0);
+        UTC = TimeZone.getTimeZone("UTC");
     }
 
     @Override

@@ -17,6 +17,7 @@ package com.microsoft.windowsazure.services.media;
 
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.AfterClass;
 import org.junit.Test;
 
 import com.microsoft.windowsazure.Configuration;
@@ -83,5 +84,11 @@ public class MediaServiceTest {
 
         // Assert
         assertNotNull(mediaContract);
+    }
+    
+    @AfterClass
+    public static void resetConfiguration()
+    {
+    	Configuration.reset();
     }
 }

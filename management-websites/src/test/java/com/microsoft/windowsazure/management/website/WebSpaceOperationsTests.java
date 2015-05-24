@@ -28,6 +28,7 @@ import org.junit.Test;
 import com.microsoft.windowsazure.management.websites.models.WebSite;
 import com.microsoft.windowsazure.management.websites.models.WebSiteListParameters;
 import com.microsoft.windowsazure.management.websites.models.WebSpaceAvailabilityState;
+import com.microsoft.windowsazure.management.websites.models.WebSpaceNames;
 import com.microsoft.windowsazure.management.websites.models.WebSpacesCreatePublishingUserParameters;
 import com.microsoft.windowsazure.management.websites.models.WebSpacesCreatePublishingUserResponse;
 import com.microsoft.windowsazure.management.websites.models.WebSpacesGetDnsSuffixResponse;
@@ -87,7 +88,7 @@ public class WebSpaceOperationsTests extends WebSiteManagementIntegrationTestBas
 
     @Test
     public void getWebSpaceSuccess() throws Exception {
-        String webSpaceName = "eastuswebspace";
+        String webSpaceName = WebSpaceNames.EASTUSWEBSPACE; 
 
         // Act
         WebSpacesGetResponse webSpaceGetResponse = webSiteManagementClient.getWebSpacesOperations().get(webSpaceName);
@@ -162,7 +163,7 @@ public class WebSpaceOperationsTests extends WebSiteManagementIntegrationTestBas
     
     @Test
     public void listWebSitesSuccess() throws Exception {
-        String webSpaceName = "eastuswebspace"; 
+        String webSpaceName = WebSpaceNames.EASTUSWEBSPACE; 
         WebSiteListParameters  webSiteListParameters = new  WebSiteListParameters();
         ArrayList<String> propertiesToInclude = new ArrayList<String>();
         webSiteListParameters.setPropertiesToInclude(propertiesToInclude);

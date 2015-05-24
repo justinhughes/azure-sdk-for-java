@@ -210,9 +210,11 @@ public class JobIntegrationTest extends IntegrationTestBase {
         verifyJobProperties("actualJob", name, priority, duration, state,
                 templateId, created, lastModified, stateTime, endTime, 1,
                 actualJob);
+        
+        
         List<QueueMessage> queueMessages = queueService.peekMessages(queueName)
                 .getQueueMessages();
-        assertEquals(1, queueMessages.size());
+        assertEquals(0, queueMessages.size());
     }
 
     @Test

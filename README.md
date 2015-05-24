@@ -162,6 +162,13 @@ account.  To host your Java code in Microsoft Azure, you additionally need to do
 the full Microsoft Azure SDK for Java - which includes packaging, emulation, and
 deployment tools.
 
+##Run Tests
+ * Need to setup Environmental Variable AZURE_PROPERTIES to contain the path of your azure.properties file.
+
+##Java8
+
+ * You will need to install Unlimited strength Jurisdiction files (http://stackoverflow.com/questions/6481627/java-security-illegal-key-size-or-default-parameters)
+ *
 
 #Need Help?
 

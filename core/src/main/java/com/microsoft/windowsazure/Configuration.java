@@ -15,16 +15,16 @@
 
 package com.microsoft.windowsazure;
 
-import com.microsoft.windowsazure.core.Builder;
-import com.microsoft.windowsazure.core.DefaultBuilder;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.microsoft.windowsazure.core.Builder;
+import com.microsoft.windowsazure.core.DefaultBuilder;
 
 public class Configuration {
     /**
@@ -90,22 +90,20 @@ public class Configuration {
         Configuration.instance = configuration;
     }
 
+    public static void reset() {
+        instance = null;
+        getInstance();
+    }
+    
     public static Configuration load() throws IOException {
         final Configuration config = new Configuration();
 
-        final InputStream stream = Thread
-                .currentThread()
-                .getContextClassLoader()
-                .getResourceAsStream(
-                        "META-INF/com.microsoft.windowsazure.properties");
-        if (stream != null) {
-            final Properties properties = new Properties();
-            properties.load(stream);
-            for (Map.Entry<Object, Object> key : properties.entrySet()) {
-                config.setProperty(key.getKey().toString(), key.getValue());
-            }
-        }
+        final Properties properties = AzureProperties.getProperties();
 
+        for (Map.Entry<Object, Object> key : properties.entrySet()) {
+            config.setProperty(key.getKey().toString(), key.getValue());
+        }
+        
         return config;
     }
 

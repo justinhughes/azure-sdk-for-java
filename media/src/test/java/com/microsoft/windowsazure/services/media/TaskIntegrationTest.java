@@ -191,22 +191,24 @@ public class TaskIntegrationTest extends IntegrationTestBase {
         jobCreator.addTaskCreator(taskCreator);
 
         JobInfo jobInfo = service.create(jobCreator);
-
+        
         // Act
         service.action(Job.cancel(jobInfo.getId()));
+        
         JobInfo cancellingJobInfo = service.get(Job.get(jobInfo.getId()));
         while (cancellingJobInfo.getState() == JobState.Canceling) {
             Thread.sleep(2000);
             cancellingJobInfo = service.get(Job.get(jobInfo.getId()));
         }
-
+        
         // Assert
         List<TaskInfo> taskInfos = service.list(Task.list(cancellingJobInfo
                 .getTasksLink()));
-        for (TaskInfo taskInfo : taskInfos) {
+        for (TaskInfo taskInfo : taskInfos) {	
             verifyTaskPropertiesNoEncryption("canceled task", mediaProcessorId,
                     TaskOption.None, taskBody, configuration, name, 3,
-                    null, null, 0.0, 0.0, null, TaskState.Canceled,
+                    cancellingJobInfo.getEndTime(), //Sometimes is set, sometimes is not
+                    null, 0.0, 0.0, null, TaskState.Canceled,
                     taskInfo);
         }
     }
@@ -244,8 +246,6 @@ public class TaskIntegrationTest extends IntegrationTestBase {
                 initializationVector, actual.getInitializationVector());
 
         // Read-only fields
-        assertDateApproxEquals(message + " getEndTime", endTime,
-                actual.getEndTime());
         assertNotNull(message + " getErrorDetails", actual.getErrorDetails());
         assertEquals(message + " getErrorDetails.size", 0, actual
                 .getErrorDetails().size());
@@ -271,6 +271,9 @@ public class TaskIntegrationTest extends IntegrationTestBase {
         assertDateApproxEquals(message + " getStartTime", startTime,
                 actual.getStartTime());
         assertEquals(message + " getState", state, actual.getState());
+        
+        assertDateApproxEquals(message + " getEndTime", endTime,
+                actual.getEndTime());
 
         // Note: The PerfMessage is not validated because it is server
         // generated.

@@ -34,29 +34,7 @@ public abstract class ScenarioTestBase {
     public SetupManager setupManager = new SetupManager();
 
     protected static void initializeConfig() {
-        config = new Configuration();
-
-        overrideWithEnv(config, BlobConfiguration.ACCOUNT_NAME);
-        overrideWithEnv(config, BlobConfiguration.ACCOUNT_KEY);
-        overrideWithEnv(config, BlobConfiguration.URI);
-
-        overrideWithEnv(config, QueueConfiguration.ACCOUNT_NAME);
-        overrideWithEnv(config, QueueConfiguration.ACCOUNT_KEY);
-        overrideWithEnv(config, QueueConfiguration.URI);
-
-        overrideWithEnv(config, MediaConfiguration.URI);
-        overrideWithEnv(config, MediaConfiguration.OAUTH_URI);
-        overrideWithEnv(config, MediaConfiguration.OAUTH_CLIENT_ID);
-        overrideWithEnv(config, MediaConfiguration.OAUTH_CLIENT_SECRET);
-        overrideWithEnv(config, MediaConfiguration.OAUTH_SCOPE);
-    }
-
-    private static void overrideWithEnv(Configuration config, String key) {
-        String value = System.getenv(key);
-        if (value == null)
-            return;
-
-        config.setProperty(key, value);
+        config = Configuration.getInstance();
     }
 
     protected void signalSetupStarting() {

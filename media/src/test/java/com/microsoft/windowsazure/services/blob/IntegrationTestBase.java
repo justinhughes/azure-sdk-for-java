@@ -22,19 +22,10 @@ import com.microsoft.windowsazure.Configuration;
 public abstract class IntegrationTestBase {
     protected static Configuration createConfiguration() {
         Configuration config = Configuration.getInstance();
-        overrideWithEnv(config, BlobConfiguration.ACCOUNT_NAME);
-        overrideWithEnv(config, BlobConfiguration.ACCOUNT_KEY);
-        overrideWithEnv(config, BlobConfiguration.URI);
         return config;
     }
 
-    private static void overrideWithEnv(Configuration config, String key) {
-        String value = System.getenv(key);
-        if (value == null)
-            return;
 
-        config.setProperty(key, value);
-    }
 
     protected static boolean isRunningWithEmulator(Configuration config) {
         String accountName = "devstoreaccount1";

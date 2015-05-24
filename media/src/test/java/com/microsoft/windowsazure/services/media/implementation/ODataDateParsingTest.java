@@ -37,11 +37,9 @@ public class ODataDateParsingTest {
 
     @BeforeClass
     public static void setupClass() {
-        utc = TimeZone.getDefault();
-        utc.setRawOffset(0);
+        utc = TimeZone.getTimeZone("UTC");
 
-        pst = TimeZone.getDefault();
-        pst.setRawOffset(-8 * 60 * 60 * 1000);
+        pst = TimeZone.getTimeZone("PST");
     }
 
     @Test

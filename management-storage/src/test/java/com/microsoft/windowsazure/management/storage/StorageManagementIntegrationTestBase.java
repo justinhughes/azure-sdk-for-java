@@ -27,6 +27,7 @@ import com.microsoft.windowsazure.core.utils.KeyStoreType;
 import com.microsoft.windowsazure.management.ManagementClient;
 import com.microsoft.windowsazure.management.ManagementService;
 import com.microsoft.windowsazure.management.configuration.ManagementConfiguration;
+import com.microsoft.windowsazure.AzureProperties;
 import com.microsoft.windowsazure.Configuration;
 import com.microsoft.windowsazure.MockIntegrationTestBase;
 import com.microsoft.windowsazure.management.models.LocationAvailableServiceNames;
@@ -71,13 +72,13 @@ public abstract class StorageManagementIntegrationTestBase extends MockIntegrati
     }       
     
     protected static Configuration createConfiguration() throws Exception {
-        String baseUri = System.getenv(ManagementConfiguration.URI);
+        String baseUri = AzureProperties.getProperty(ManagementConfiguration.URI);
         return ManagementConfiguration.configure(
             baseUri != null ? new URI(baseUri) : null,
-            System.getenv(ManagementConfiguration.SUBSCRIPTION_ID),
-            System.getenv(ManagementConfiguration.KEYSTORE_PATH),
-            System.getenv(ManagementConfiguration.KEYSTORE_PASSWORD),
-            KeyStoreType.fromString(System.getenv(ManagementConfiguration.KEYSTORE_TYPE))
+            		AzureProperties.getProperty(ManagementConfiguration.SUBSCRIPTION_ID),
+            		AzureProperties.getProperty(ManagementConfiguration.KEYSTORE_PATH),
+            		AzureProperties.getProperty(ManagementConfiguration.KEYSTORE_PASSWORD),
+            KeyStoreType.fromString(AzureProperties.getProperty(ManagementConfiguration.KEYSTORE_TYPE))
         );        
     }
     

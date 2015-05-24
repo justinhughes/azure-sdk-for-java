@@ -17,7 +17,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.microsoft.azure</groupId>
-    <version>0.7.0</version>
+    <version>0.7.1-SNAPSHOT</version>
     <artifactId>azure-bom</artifactId>
   </parent>
 
@@ -182,8 +182,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
 

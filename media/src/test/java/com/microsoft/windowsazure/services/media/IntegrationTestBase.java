@@ -55,7 +55,6 @@ import com.microsoft.windowsazure.services.media.models.MediaProcessor;
 import com.microsoft.windowsazure.services.media.models.MediaProcessorInfo;
 import com.microsoft.windowsazure.services.media.models.NotificationEndPoint;
 import com.microsoft.windowsazure.services.media.models.NotificationEndPointInfo;
-import com.microsoft.windowsazure.services.queue.QueueConfiguration;
 import com.microsoft.windowsazure.services.queue.QueueContract;
 import com.microsoft.windowsazure.services.queue.QueueService;
 import com.microsoft.windowsazure.services.queue.models.ListQueuesResult;
@@ -89,18 +88,6 @@ public abstract class IntegrationTestBase {
     @BeforeClass
     public static void setup() throws Exception {
         config = Configuration.getInstance();
-        overrideWithEnv(config, MediaConfiguration.URI);
-        overrideWithEnv(config, MediaConfiguration.OAUTH_URI);
-        overrideWithEnv(config, MediaConfiguration.OAUTH_CLIENT_ID);
-        overrideWithEnv(config, MediaConfiguration.OAUTH_CLIENT_SECRET);
-        overrideWithEnv(config, MediaConfiguration.OAUTH_SCOPE);
-
-        overrideWithEnv(config, QueueConfiguration.ACCOUNT_KEY,
-                "media.queue.account.key");
-        overrideWithEnv(config, QueueConfiguration.ACCOUNT_NAME,
-                "media.queue.account.name");
-        overrideWithEnv(config, QueueConfiguration.URI, "media.queue.uri");
-
         service = MediaService.create(config);
         queueService = QueueService.create(config);
 
@@ -125,23 +112,6 @@ public abstract class IntegrationTestBase {
         if (position != -1) {
             MEDIA_ENCODER_MEDIA_PROCESSOR_ID = ps.get(position).getId();
         }
-    }
-
-    protected static void overrideWithEnv(Configuration config, String key) {
-        String value = System.getenv(key);
-        if (value == null)
-            return;
-
-        config.setProperty(key, value);
-    }
-
-    protected static void overrideWithEnv(Configuration config, String key,
-            String enviromentKey) {
-        String value = System.getenv(enviromentKey);
-        if (value == null)
-            return;
-
-        config.setProperty(key, value);
     }
 
     @AfterClass

@@ -21,6 +21,7 @@ import java.util.concurrent.Callable;
 
 import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
 
+import com.microsoft.windowsazure.AzureProperties;
 import com.microsoft.windowsazure.Configuration;
 import com.microsoft.windowsazure.MockIntegrationTestBase;
 import com.microsoft.windowsazure.core.Builder;
@@ -69,13 +70,13 @@ public abstract class ManagementIntegrationTestBase extends MockIntegrationTestB
     }
     
     protected static Configuration createConfiguration() throws Exception {
-        String baseUri = System.getenv(ManagementConfiguration.URI);
+        String baseUri = AzureProperties.getProperty(ManagementConfiguration.URI);
         return ManagementConfiguration.configure(
             baseUri != null ? new URI(baseUri) : null,
-            System.getenv(ManagementConfiguration.SUBSCRIPTION_ID),
-            System.getenv(ManagementConfiguration.KEYSTORE_PATH),
-            System.getenv(ManagementConfiguration.KEYSTORE_PASSWORD),
-            KeyStoreType.fromString(System.getenv(ManagementConfiguration.KEYSTORE_TYPE))
+            AzureProperties.getProperty(ManagementConfiguration.SUBSCRIPTION_ID),
+            AzureProperties.getProperty(ManagementConfiguration.KEYSTORE_PATH),
+            AzureProperties.getProperty(ManagementConfiguration.KEYSTORE_PASSWORD),
+            KeyStoreType.fromString(AzureProperties.getProperty(ManagementConfiguration.KEYSTORE_TYPE))
         );
     }
     

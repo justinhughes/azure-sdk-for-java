@@ -17,6 +17,7 @@ package com.microsoft.windowsazure.services.media;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.AfterClass;
 import org.junit.Test;
 
 import com.microsoft.windowsazure.Configuration;
@@ -97,6 +98,12 @@ public class MediaConfigurationTest {
         assertEquals("testClientSecret",
                 configuration
                         .getProperty("testProfile.media.oauth.client.secret"));
+    }
+    
+    @AfterClass
+    public static void resetConfiguration()
+    {
+    	Configuration.reset();
     }
 
 }

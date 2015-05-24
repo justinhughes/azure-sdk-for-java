@@ -93,15 +93,6 @@ public abstract class IntegrationTestBase {
 
     protected static Configuration createConfiguration() throws Exception {
         Configuration config = Configuration.load();
-        overrideWithEnv(config, ServiceBusConfiguration.CONNECTION_STRING);
         return config;
-    }
-
-    private static void overrideWithEnv(Configuration config, String key) {
-        String value = System.getenv(key);
-        if (value == null)
-            return;
-
-        config.setProperty(key, value);
     }
 }
