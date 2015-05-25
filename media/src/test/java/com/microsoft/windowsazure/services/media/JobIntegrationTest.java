@@ -328,7 +328,9 @@ public class JobIntegrationTest extends IntegrationTestBase {
 
         // Assert
         JobInfo canceledJob = service.get(Job.get(jobInfo.getId()));
-        assertEquals(JobState.Canceling, canceledJob.getState());
+        assertTrue("JobState must be cancelled or cancelling",
+        		JobState.Canceling == canceledJob.getState()
+        		|| JobState.Canceled == canceledJob.getState());
 
     }
 

@@ -18,7 +18,7 @@
   <parent>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure</artifactId>
-    <version>0.7.1-SNAPSHOT</version>
+    <version>0.7.1-LOC8</version>
     <relativePath>../parent/pom.xml</relativePath>
   </parent>
 
@@ -85,28 +85,6 @@
       <groupId>org.bouncycastle</groupId>
       <artifactId>bcprov-jdk16</artifactId>
     </dependency>
-
-    <!-- Test dependencies -->
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-all</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-io</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.github.tomakehurst</groupId>
-      <artifactId>wiremock</artifactId>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
   <build>
@@ -159,18 +137,6 @@
 <br/>* limitations under the License.
 <br/>*/</code>]]></bottom>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>test-jar</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
     <pluginManagement>

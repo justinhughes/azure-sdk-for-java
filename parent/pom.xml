@@ -17,7 +17,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.microsoft.azure</groupId>
-    <version>0.7.1-SNAPSHOT</version>
+    <version>0.7.1-LOC8</version>
     <artifactId>azure-bom</artifactId>
   </parent>
 
@@ -323,6 +323,7 @@
   </reporting>
   <modules>
     <module>../core</module>
+    <module>../test</module>
     <module>../management</module>
     <module>../management-compute</module>
     <module>../management-media</module>
